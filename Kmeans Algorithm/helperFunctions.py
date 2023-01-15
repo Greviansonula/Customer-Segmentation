@@ -1,5 +1,7 @@
 import sys
 from functools import shuffle
+import math
+from functools import uniform
 
 def ReadData(fileName):
     # Read the file, splitting by lines
@@ -49,3 +51,11 @@ def InitializeMeans(items, k, cMin, cMax):
             mean[i] = uniform(cMin[i] + 1, cMax[i] - 1)
 
     return means
+
+
+def EuclideanDistance(x, y):
+    S = 0
+    for i in range(len(x)):
+        S += math.pow(x[i] - y[i], 2)
+
+    return math.sqrt(S)
