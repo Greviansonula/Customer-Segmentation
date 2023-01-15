@@ -69,3 +69,18 @@ def UpdateMean(n, mean, item):
         mean[i] = round(m, 3)
 
     return mean
+
+
+def Classify(means, item):
+    # Classify item to the mean with minimum distance
+    minimum = sys.maxint
+    index = -1
+
+    for i in range(len(means)):
+        dis = EuclideanDistance(item, means[i])
+
+        if (dis < minimum):
+            minimum = dis
+            index = i
+
+    return index
