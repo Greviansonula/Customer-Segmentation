@@ -1,7 +1,6 @@
 import sys
-from functools import shuffle
+from random import shuffle, uniform
 import math
-from functools import uniform
 
 def ReadData(fileName):
     # Read the file, splitting by lines
@@ -27,12 +26,12 @@ def ReadData(fileName):
 
 def FindColMinMax(items):
     n = len(items[0])
-    minima = [sys.maxint for i in range(n)]
-    maxima = [-sys.maxint -1 for i in range(n)]
+    minima = [sys.maxsize for i in range(n)]
+    maxima = [-sys.maxsize -1 for i in range(n)]
 
     for item in items:
         for f in range(len(item)):
-            if (item[f] < minima):
+            if (item[f] < minima[f]):
                 minima[f] = item[f]
             
             if (item[f] > maxima[f]):
@@ -73,7 +72,7 @@ def UpdateMean(n, mean, item):
 
 def Classify(means, item):
     # Classify item to the mean with minimum distance
-    minimum = sys.maxint
+    minimum = sys.maxsize
     index = -1
 
     for i in range(len(means)):
@@ -112,7 +111,7 @@ def calculateMeans(k, items, maxIterations=10000):
 
             clusterSizes[index] += 1
             cSize = clusterSizes[index]
-            means[index] = UpdateMean(cSize, mean[index], item)
+            means[index] = UpdateMean(cSize, means[index], item)
 
             if (index != belongsTo[i]):
                 noChange = False

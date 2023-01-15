@@ -1,6 +1,7 @@
 from helperFunctions import *
+import numpy as np
 
-def FindClusters(mean, items):
+def FindClusters(means, items):
     clusters = [[] for i in range(len(means))]
 
     for item in items:
@@ -10,3 +11,11 @@ def FindClusters(mean, items):
         clusters[index].append(item)
 
     return clusters
+
+items = ReadData("data.txt")
+
+means = calculateMeans(3, items)
+
+clusters = FindClusters(means, items)
+
+print(clusters)
