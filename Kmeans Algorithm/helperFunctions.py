@@ -124,3 +124,4 @@ def calculateMeans(k, items, maxIterations=10000):
             break
     
     return means
+
