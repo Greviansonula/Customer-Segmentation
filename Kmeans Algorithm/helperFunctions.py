@@ -84,3 +84,43 @@ def Classify(means, item):
             index = i
 
     return index
+
+
+def calculateMeans(k, items, maxIterations=10000):
+    # Find the minima and maxima for colums
+    cMin, cMax = FindColMinMax(items)
+
+    # Initialize means at random points
+    means = InitializeMeans(items, k, cMin, cMax)
+
+    # initialize clusters, the array to hold the number of items
+    # in a class
+    clusterSizes = [0 for i in range(len(means))]
+
+    # An array to hold the cluster an item belongs
+    belongsTo = [0 for i in range(len(items))]
+
+    # Calculate means
+    for e in range(maxIterations):
+
+        # if no change of clusetr occurs, halt
+        noChange = True
+        for i in range(len(items)):
+            item = items[i]
+
+            index = Classify(means, item)
+
+            clusterSizes[index] += 1
+            cSize = clusterSizes[index]
+            means[index] = UpdateMean(cSize, mean[index], item)
+
+            if (index != belongsTo[i]):
+                noChange = False
+
+            belongsTo[i] = index
+        
+        # Nothing changd, return
+        if (noChange):
+            break
+    
+    return means
