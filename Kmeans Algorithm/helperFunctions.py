@@ -59,3 +59,13 @@ def EuclideanDistance(x, y):
         S += math.pow(x[i] - y[i], 2)
 
     return math.sqrt(S)
+
+
+
+def UpdateMean(n, mean, item):
+    for i in range(len(mean)):
+        m = mean[i]
+        m = (m * (n - 1) + item[i])/float(n)
+        mean[i] = round(m, 3)
+
+    return mean
