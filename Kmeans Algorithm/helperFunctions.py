@@ -37,3 +37,15 @@ def FindColMinMax(items):
                 maxima[f] = item[f]
 
     return minima, maxima
+
+
+def InitializeMeans(items, k, cMin, cMax):
+    f = len(items[0])
+    means = [[0 for i in range(f)] for j in range(k)]
+
+    for mean in means:
+        for i in range(len(mean)):
+
+            mean[i] = uniform(cMin[i] + 1, cMax[i] - 1)
+
+    return means
